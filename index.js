@@ -1,15 +1,7 @@
-let parties=[]
+let parties = []
+const list = document.querySelector(".list")
 
-async function fetchParties(){
-    const response = await fetch('https://fsa-crud-2aa9294fe819.herokuapp.com/api/2310/events')
-        console.log(response);
-        const data = await response.json();
-        parties = data.data;
-        console.log(parties);
-        render()
-}
-
-function renderParties() {
+function render() {
     const html = parties.map((party) => {
         return `
             <h2>Party name: ${party.name}</h2>
@@ -22,5 +14,14 @@ function renderParties() {
     list.innerHTML = html.join("")
 }
 
+
+async function fetchParties() {
+    const response = await fetch("https://fsa-crud-2aa9294fe819.herokuapp.com/api/2310/events")
+    console.log(response)
+    const data = await response.json()
+    parties = data.data
+    console.log(parties)
+    render()
+}
 
 fetchParties()
